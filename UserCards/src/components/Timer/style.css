@@ -1,0 +1,13 @@
+.timer-wrap {
+  margin: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.timer {
+  font-size: 18px;
+}
+
+.userItem {
+  list-style-type: none;
+}
