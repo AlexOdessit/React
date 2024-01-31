@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '../Card/Card.module.css';
 
-const Card = (state) => {
-  const { data: product, isLoading, isError } = state;
+const Card = (props) => {
+  const { data: product, isLoading, isError } = props;
   if (isLoading) {
     return <h3 className={styles.loading}>Loading...</h3>;
   }
