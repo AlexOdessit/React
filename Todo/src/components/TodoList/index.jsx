@@ -32,7 +32,10 @@ const TodoList = () => {
       {error && <p>{error}</p>}
 
       {todos.map((todo, index) => (
-        <li key={index} className={classNames({ do_itembox: !!todo.task })}>
+        <li
+          key={index}
+          className={classNames({ [styles.do_itembox]: !!todo.task })}
+        >
           <input
             type='checkbox'
             checked={todo.completed || false}
