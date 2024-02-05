@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTodoList } from '../../hooks/todo';
 import classNames from 'classnames';
-import styles from '../TodoList/TodoList.module.scss';
-import boxImg from '../../assets/todolist/box.png';
+import styles from './TodoList.module.scss';
+import boxImg from './images/box.png';
 
 const TodoList = () => {
   const {
