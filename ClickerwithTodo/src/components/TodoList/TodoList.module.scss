@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 76, 255);
+}
+
+li {
+  list-style-type: none;
+}
+
+.dolist_wrap {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+#do_form {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input_box,
+.do_itembox {
+  display: flex;
+  justify-content: space-between;
+}
+.input_box {
+  display: flex;
+}
+
+#do_input,
+#addbtn,
+.do_itembox {
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+#do_input {
+  border: 2px solid #2c6bec;
+  padding: 15px;
+  width: 100%;
+}
+
+#addbtn {
+  font-size: 16px;
+  padding: 5px;
+  width: 80px;
+  color: #fff;
+  background: #2c6bec;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.do_itembox {
+  border: 2px solid #bbcccf;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.remove_item {
+  max-width: 100%;
+  width: 25px;
+  cursor: pointer;
+}
