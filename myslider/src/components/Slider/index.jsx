@@ -1,49 +1,56 @@
-import React, { Component } from 'react';
-import styles from '../Slider/Slider.module.css';
+import React, { useState, useEffect } from 'react';
+import styles from '../Slider/Slider.module.scss';
+import classNames from 'classnames';
+import { getCards } from '../../api';
+import { useLoader } from '../../hooks';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Card from '../Card';
 
-class Slider extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentSlide: 0,
-    };
-  }
+const Slider = () => {
+  const { data, isLoading, isError } = useLoader(getCards);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = data;
 
-  nextSlide = () => {
-    const { currentSlide } = this.state;
-    const slides = this.props.data || [];
-
-    this.setState({
-      currentSlide: currentSlide === slides.length - 1 ? 0 : currentSlide + 1,
-    });
-  };
-
-  prevSlide = () => {
-    const { currentSlide } = this.state;
-    const slides = this.props.data || [];
-    this.setState({
-      currentSlide: currentSlide === 0 ? slides.length - 1 : currentSlide - 1,
-    });
-  };
-
-  render() {
-    const { currentSlide } = this.state;
-    const { data: slides, isLoading, isError } = this.props;
-    const currentProduct = slides.length > 0 ? slides[currentSlide] : null;
-    return (
-      <div className={styles.wrap}>
-        <Card data={currentProduct} isLoading={isLoading} isError={isError} />
-        <button onClick={this.prevSlide}>
-          <IoIosArrowBack size='30px' />
-        </button>
-        <button onClick={this.nextSlide}>
-          <IoIosArrowForward size='30px' />
-        </button>
-      </div>
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === slides.length - 1 ? 0 : prevSlide + 1
     );
-  }
-}
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? slides.length - 1 : prevSlide - 1
+    );
+  };
+
+  useEffect(() => {
+    const slideAnimation = classNames(styles.slideAnimation);
+
+    if (slideAnimation) {
+      slideAnimation.style.transition = 'transform 0.6s ease-in-out';
+      slideAnimation.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+  }, [currentSlide]);
+
+  const currentProduct = slides.length > 0 ? slides[currentSlide] : null;
+  const loaded = !isLoading;
+
+  return (
+    <section className={styles.section}>
+      <div className={styles.sliderContainer}>
+        <div className={styles.slideAnimation}>
+          <Card data={currentProduct} isLoading={isLoading} isError={isError} />
+        </div>
+
+        {loaded && (
+          <div className={styles.slideNav}>
+            <IoIosArrowBack className={styles.btn} onClick={prevSlide} />
+            <IoIosArrowForward className={styles.btn} onClick={nextSlide} />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
 
 export default Slider;

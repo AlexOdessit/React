@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from '../Card/Card.module.css';
+import styles from '../Card/Card.module.scss';
+
 
 const Card = (props) => {
   const { data: product, isLoading, isError } = props;
