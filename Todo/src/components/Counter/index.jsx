@@ -25,8 +25,12 @@ const Counter = () => {
     <>
       <div className={styles.wrapper}>
         <p>Click count: {state.counter}</p>
-        <button onClick={handleIncrement}>+</button>
-        <button onClick={handleDecrement}>-</button>
+        <button className={styles.counterBtn} onClick={handleIncrement}>
+          +
+        </button>
+        <button className={styles.counterBtn} onClick={handleDecrement}>
+          -
+        </button>
         <label>
           set step:
           <select value={state.step} onChange={handleStepChange}>

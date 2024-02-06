@@ -7,6 +7,8 @@ const CoordsComponent = () => {
     initialCoords: { x: 0, y: 0 },
   });
 
+  const { coords } = state;
+
   const handleMouseMove = ({ clientX, clientY }) => {
     setCoords({ x: clientX, y: clientY });
   };
@@ -22,7 +24,7 @@ const CoordsComponent = () => {
   return (
     <div>
       <h2>
-        Mouse Coordinates: ({state.coords.x}, {state.coords.y})
+        Mouse Coordinates: ({coords.x}, {coords.y})
       </h2>
     </div>
   );
