@@ -15,7 +15,7 @@ class UserList extends React.Component {
     this.setState({ userData: updatedUserData });
   };
 
-  addCard = (user) => (
+  mapUsersCard = (user) => (
     <li key={user.id} className={styles.card}>
       <UserCard user={user} removeUser={this.removeUser} />
     </li>
@@ -24,7 +24,7 @@ class UserList extends React.Component {
   render() {
     const { userData } = this.state;
 
-    const userItem = userData.map(this.addCard);
+    const userItem = userData.map(this.mapUsersCard);
 
     return <article className={styles.wrap}>{userItem}</article>;
   }

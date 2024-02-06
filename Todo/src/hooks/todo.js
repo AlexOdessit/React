@@ -6,9 +6,8 @@ export const useTodoList = () => {
   const [error, setError] = useState('');
 
   const createListItem = () => {
-    const newTodo = { task: taskInfo };
+    const newTodo = { task: taskInfo, completed: false };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
-    console.log(newTodo);
   };
 
   const handleCheckboxChange = (index) => {
