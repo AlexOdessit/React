@@ -24,7 +24,7 @@ const Counter = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <p>Click count: {state.counter}</p>
+        <h2>Click count: {state.counter}</h2>
         <button className={styles.counterBtn} onClick={handleIncrement}>
           +
         </button>

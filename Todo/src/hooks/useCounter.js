@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import { increment,decrement,setStep,setCoords } from '../actions/actionCreator';
 
 const initialState = {
   counter: 0,
@@ -27,29 +28,18 @@ const reducer = (state, { type, payload }) => {
   }
 };
 
+const dataAction = [increment,decrement,setStep,setCoords];
+
 export const useCounter = ({ initialCounter, initialStep, initialCoords }) => {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     counter: initialCounter || initialState.counter,
     step: initialStep || initialState.step,
     coords: initialCoords || initialState.coords,
+
   });
 
-  const increment = (value) => {
-    dispatch({ type: 'increment', payload: value });
-  };
-
-  const decrement = (value) => {
-    dispatch({ type: 'decrement', payload: value });
-  };
-
-  const setStep = (newStep) => {
-    dispatch({ type: 'setStep', payload: newStep });
-  };
-
-  const setCoords = (newCoords) => {
-    dispatch({ type: 'setCoords', payload: newCoords });
-  };
+  
 
   return {
     state,

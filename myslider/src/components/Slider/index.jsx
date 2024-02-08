@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../Slider/Slider.module.scss';
-import classNames from 'classnames';
 import { getCards } from '../../api';
 import { useLoader } from '../../hooks';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
@@ -10,6 +9,7 @@ const Slider = () => {
   const { data, isLoading, isError } = useLoader(getCards);
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = data;
+  const loaded = !isLoading;
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) =>
@@ -24,16 +24,16 @@ const Slider = () => {
   };
 
   useEffect(() => {
-    const slideAnimation = classNames(styles.slideAnimation);
+    const intervalId = setInterval(() => {
+      setCurrentSlide((prevSlide) =>
+        prevSlide === slides.length - 1 ? 0 : prevSlide + 1
+      );
+    }, 3000);
 
-    if (slideAnimation) {
-      slideAnimation.style.transition = 'transform 0.6s ease-in-out';
-      slideAnimation.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-  }, [currentSlide]);
+    return () => clearInterval(intervalId);
+  }, [currentSlide, slides.length]);
 
   const currentProduct = slides.length > 0 ? slides[currentSlide] : null;
-  const loaded = !isLoading;
 
   return (
     <section className={styles.section}>
